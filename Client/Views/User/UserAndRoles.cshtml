@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Client.Models.UserAndRoles>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UserAndRoles</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://twitter.com/murat7ay">Murat Ay</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/User">Home</a></li>
+                <li><a href="/User">User</a></li>
+                <li><a href="/Roles">Roles</a></li>
+                <li><a href="/User/UserAndRoles">User And Roles</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="jumbotron text-center">
+        <h1>Test Client WCF Service</h1>
+        <p>User And Roles Service</p>
+    </div>
+    <p id="notfy"></p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>|
+                <button type="button" onclick="RemoveRole(@item.Id)" class="btn btn-link">Remove</button>
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
+<script>
+    function RemoveRole(id) {
+        console.log(id)
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "/User/RemoveRole",
+            data: { id: id }
+
+        }).done(function (d) {
+            console.log(d)
+            $('#notfy').html(d);
+            if (d == "Role has been removed.") {
+                setTimeout(function () { location.reload(); }, 1000);
+            }
+        }).fail(function (xhr) {
+            console.log(d)
+            $('#notfy').html(d);
+        })
+    }
+
+</script>

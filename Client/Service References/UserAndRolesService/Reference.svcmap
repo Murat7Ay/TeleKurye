@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="01fdc9bc-b003-475f-b99c-4d55923c4785" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:10727/UserAndRoles.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="UserAndRoles.xsd" MetadataType="Schema" ID="18e8f948-18ce-4c0b-bf76-7424fa8f9c9a" SourceId="1" SourceUrl="http://localhost:10727/UserAndRoles.svc?xsd=xsd0" />
+    <MetadataFile FileName="UserAndRoles.disco" MetadataType="Disco" ID="979c1d9f-4019-41fd-b71e-9914ad6eb8f2" SourceId="1" SourceUrl="http://localhost:10727/UserAndRoles.svc?disco" />
+    <MetadataFile FileName="UserAndRoles1.xsd" MetadataType="Schema" ID="f91b2be0-2812-43fd-bfe9-aba35db8f5c6" SourceId="1" SourceUrl="http://localhost:10727/UserAndRoles.svc?xsd=xsd1" />
+    <MetadataFile FileName="Service1.wsdl" MetadataType="Wsdl" ID="3f000bf5-4c2b-48b5-9487-f6eb12b38c3e" SourceId="1" SourceUrl="http://localhost:10727/UserAndRoles.svc?wsdl" />
+    <MetadataFile FileName="UserAndRoles2.xsd" MetadataType="Schema" ID="10fa0865-6d4f-42f4-936a-7293dd3b084c" SourceId="1" SourceUrl="http://localhost:10727/UserAndRoles.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

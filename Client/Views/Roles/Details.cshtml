@@ -1,0 +1,92 @@
+﻿@model Client.Models.RoleDetail
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://twitter.com/murat7ay">Murat Ay</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/User">Home</a></li>
+                <li><a href="/User">User</a></li>
+                <li><a href="/Roles">Roles</a></li>
+                <li><a href="/User/UserAndRoles">User And Roles</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="jumbotron text-center">
+        <h1>Test Client WCF Service</h1>
+        <p>User And Roles Service</p>
+    </div>
+    <div>
+        <h4>RoleDetail</h4>
+        <p id="notfy"></p>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RoleName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.RoleDesciription)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.RoleDesciription)
+            </dd>
+            <dt>Users</dt>
+            <dd>
+                <ul>
+                    @foreach (var item in Model.RoleUsers)
+                    {
+                        <li>@item.Name @item.Surname | <button type="button" onclick="RemoveRole(@item.Id,@Model.Id)" class="btn btn-link">Remove</button> </li>
+                    }
+                </ul>
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
+<script>
+    function RemoveRole(usrId, rId) {
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "/User/RemoveRole",
+            data: { usrId: usrId, rId: rId }
+
+        }).done(function (d) {
+            console.log(d)
+            $('#notfy').html(d);
+            if (d == "Role has been removed.") {
+                setTimeout(function () { location.reload(); }, 1000);
+            }
+        }).fail(function (xhr) {
+            console.log(d)
+            $('#notfy').html(d);
+        })
+    }
+</script>

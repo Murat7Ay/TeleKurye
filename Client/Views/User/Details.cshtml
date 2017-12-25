@@ -1,0 +1,132 @@
+﻿@model Client.Models.UserDetail
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://twitter.com/murat7ay">Murat Ay</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/User">Home</a></li>
+                <li><a href="/User">User</a></li>
+                <li><a href="/Roles">Roles</a></li>
+                <li><a href="/User/UserAndRoles">User And Roles</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="jumbotron text-center">
+        <h1>Test Client WCF Service</h1>
+        <p>User And Roles Service</p>
+    </div>
+    <div>
+        <h4>User Detail</h4>
+        <p id="notfy"></p>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Surname)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Surname)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Password)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Password)
+                    </dd>
+
+                    <dt>User Roles</dt>
+                    <dd>
+                        <ul>
+                            @foreach (var item in Model.UserRoles)
+                            {
+                                <li>@item.RoleName - @item.RoleDesciription | <button type="button" onclick="RemoveRole(@Model.Id,@item.Id)" class="btn btn-link">Remove</button></li>
+                            }
+                        </ul>
+                    </dd>
+
+
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3">@Html.DropDownList("RoleList")</div>
+                    <div class="col-md-6 pull-left"><button type="button"  onclick="AddRole()" class="btn btn-default">Add Role</button></div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
+<script>
+    function AddRole() {
+        console.log(@Model.Id,$("#RoleList").val())
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "/User/AddRole",
+            data: { usrId: @Model.Id, rId: $("#RoleList").val() }
+
+        }).done(function (d) {
+            console.log(d)
+            $('#notfy').html(d);
+            if(d=="Role has been added."){
+                setTimeout(function(){ location.reload(); }, 1000);            }
+        }).fail(function (xhr) {
+            console.log(d)
+            $('#notfy').html(d);
+        })
+    }
+
+    function RemoveRole(usrId,rId){
+        $.ajax({
+            type: "POST",
+            cache: false,
+            url: "/User/RemoveRole",
+            data: { usrId: usrId, rId: rId }
+
+        }).done(function (d) {
+            console.log(d)
+            $('#notfy').html(d);
+            if(d=="Role has been removed."){
+                setTimeout(function(){ location.reload(); }, 1000);            }
+        }).fail(function (xhr) {
+            console.log(d)
+            $('#notfy').html(d);
+        })
+    }
+</script>

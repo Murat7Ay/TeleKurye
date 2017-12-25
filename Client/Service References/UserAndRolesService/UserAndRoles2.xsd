@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/UserAndRolesService.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/UserAndRolesService.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfUserModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserModel" nillable="true" type="tns:UserModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserModel" nillable="true" type="tns:ArrayOfUserModel" />
+  <xs:complexType name="UserModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Surname" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserModel" nillable="true" type="tns:UserModel" />
+  <xs:complexType name="ArrayOfUserDetailModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserDetailModel" nillable="true" type="tns:UserDetailModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserDetailModel" nillable="true" type="tns:ArrayOfUserDetailModel" />
+  <xs:complexType name="UserDetailModel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:UserModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="URoles" nillable="true" type="tns:ArrayOfRolesDetailModel" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UserDetailModel" nillable="true" type="tns:UserDetailModel" />
+  <xs:complexType name="ArrayOfRolesDetailModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RolesDetailModel" nillable="true" type="tns:RolesDetailModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRolesDetailModel" nillable="true" type="tns:ArrayOfRolesDetailModel" />
+  <xs:complexType name="RolesDetailModel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RolesModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="URId" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RolesDetailModel" nillable="true" type="tns:RolesDetailModel" />
+  <xs:complexType name="RolesModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="RName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RolesModel" nillable="true" type="tns:RolesModel" />
+  <xs:complexType name="RoleOperations">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RoleId" type="xs:int" />
+      <xs:element minOccurs="0" name="UserId" type="xs:int" />
+      <xs:element minOccurs="0" name="UserRoleId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RoleOperations" nillable="true" type="tns:RoleOperations" />
+  <xs:complexType name="ArrayOfUserAndRolesModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserAndRolesModel" nillable="true" type="tns:UserAndRolesModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserAndRolesModel" nillable="true" type="tns:ArrayOfUserAndRolesModel" />
+  <xs:complexType name="UserAndRolesModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FullName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RoleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="URId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserAndRolesModel" nillable="true" type="tns:UserAndRolesModel" />
+  <xs:complexType name="ArrayOfRolesModel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RolesModel" nillable="true" type="tns:RolesModel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRolesModel" nillable="true" type="tns:ArrayOfRolesModel" />
+  <xs:complexType name="ArrayOfRoleWithUsers">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RoleWithUsers" nillable="true" type="tns:RoleWithUsers" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoleWithUsers" nillable="true" type="tns:ArrayOfRoleWithUsers" />
+  <xs:complexType name="RoleWithUsers">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RolesModel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfUserModel" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RoleWithUsers" nillable="true" type="tns:RoleWithUsers" />
+</xs:schema>
